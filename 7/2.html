@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
+    </script>
+    <style>
+        input {
+            width: 50px;
+        }
+        
+        body {
+            font-size: 12px;
+        }
+        
+        ul {
+            list-style-type: none;
+            width: 400px;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        ul li {
+            float: left;
+            padding: 5px 0px;
+        }
+        
+        ul li span {
+            width: 50px;
+            float: left;
+            padding: 0px 10px;
+        }
+        
+        z ul .odd {
+            color: #0026ff;
+        }
+        
+        ul .even {
+            color: #ff0000;
+        }
+        
+        ul .bold {
+            font-weight: bold;
+        }
+        
+        ul .focus {
+            background-color: aqua;
+        }
+        
+        div {
+            margin: 8px 0px;
+        }
+        
+        .show {
+            background-color: rosybrown;
+            border: solid 1px #ccc;
+            padding: 8px;
+            width: 260px;
+            margin: 10px 0px;
+        }
+        
+        .show .tip {
+            font-size: 9px;
+            color: darkviolet;
+            margin: 8px 3px;
+        }
+        
+        .frame {
+            font-size: 12px;
+            width: 320px;
+            float: left;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        ul li {
+            background-color: darkblue;
+            padding: 8px;
+            float: left;
+            border-bottom: solid 1px #666;
+        }
+        
+        ul li span {
+            text-align: left;
+            width: 86px;
+            height: 18px;
+            line-height: 18px;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame" ng-controller="con">
+        <div class="show">
+            <div class="tip">THE POST RESULT:{{result}}</div>
+            <button ng-click="onclick()">Send</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+        angular.module('myApp',[])
+        .config(function($httpProvider){
+            $httpProvider.defaults.transformRequest = 
+            function(obj){
+                var arrStr = [];
+                for( var p in obj){
+                    arrStr.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                }
+                return arrStr.join("&");
+            }
+            $httpProvider.defaults.headers.post = {
+                'Content-Type':
+                'application/x-www-form-urlencoded'
+            }
+        })
+        .controller('con', function($scope, $http){
+            var postData = { name:"Sam" }
+            $scope.onclick = function (){
+                $http.post('post.php', postData)
+                .success(function(data, status, headers, config){
+                   $scope.result = data; 
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

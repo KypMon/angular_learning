@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
+    </script>
+    <style>
+        input {
+            width: 50px;
+        }
+        
+        body {
+            font-size: 12px;
+        }
+        
+        ul {
+            list-style-type: none;
+            width: 400px;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        ul li {
+            float: left;
+            padding: 5px 0px;
+        }
+        
+        ul li span {
+            width: 50px;
+            float: left;
+            padding: 0px 10px;
+        }
+        
+        z ul .odd {
+            color: #0026ff;
+        }
+        
+        ul .even {
+            color: #ff0000;
+        }
+        
+        ul .bold {
+            font-weight: bold;
+        }
+        
+        ul .focus {
+            background-color: aqua;
+        }
+        
+        div {
+            margin: 8px 0px;
+        }
+        
+        .show {
+            background-color: rosybrown;
+            border: solid 1px #ccc;
+            padding: 8px;
+            width: 260px;
+            margin: 10px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame">
+        <ul id="stuinfo">
+            <li>Loading...</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        (function(){
+            var xhr = null;
+            if(window.ActiveXObject){
+                xhr = new ActiveXObject("Microsoft.XMLHTTP")
+            }else if(window.XMLHttpRequest){
+                xhr = new XMLHttpRequest()
+            }
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4){
+                    if(xhr.status == 200){
+                        var HTML = "";
+                        var data = eval("("+xhr.responseText+")");
+                        for(var i = 0; i < data.length; i++){
+                            HTML += "<li><span>" + data[i].Code + "</span>";
+                            HTML += "<span>" + data[i].Name + "</span>";
+                            HTML += "<span>" + data[i].Score + "</span></li>";
+                        }
+                        document.getElementById("stuInfo").innerHTML = HTML;
+                    }
+                }
+            }
+            xhr.open("GET", "data/stu.php", true);
+            xhr.send();
+        })();
+    </script>
+
+</body>
+
+</html>
