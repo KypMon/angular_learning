@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    </script>
+    <style>
+        body {
+            font-size: 12px;
+        }
+        
+        ul {
+            list-style-type: none;
+            width: 400px;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        ul li {
+            float: left;
+            padding: 5px 0px;
+        }
+        
+        ul li span {
+            width: 50px;
+            float: left;
+            padding: 0px 10px;
+        }
+        
+        z ul .odd {
+            color: #0026ff;
+        }
+        
+        ul .even {
+            color: #ff0000;
+        }
+        
+        ul .bold {
+            font-weight: bold;
+        }
+        
+        ul .focus {
+            background-color: aqua;
+        }
+        
+        div {
+            margin: 8px 0px;
+        }
+        
+        .show {
+            border: solid 1px #ccc;
+            padding: 8px;
+            width: 260px;
+            margin: 10px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div ng-controller="con">
+        <input id="btnAlert" type="button" value="弹出对话框" ng-click="onClick('Fuck this shit')" />
+        <!--       1-->
+    </div>
+    <script type="text/javascript">
+        var template = angular.module('myApp', [])
+            //config 声明需要注入的对象（template）
+            //调用controlprovider
+
+        .factory('$show', function ($window) { //2.1 类变量+一个方法（通过函数）
+            return {
+                show: function (text) {
+                    $window.alert(text);
+                }
+            };
+        });
+        var con = function ($scope, $show) {
+            $scope.onClick = function (msg) { //2.2
+                $show.show(msg); //2.3
+            }
+        }
+        template.controller('con', con); //将函数传到控制器
+    </script>
+
+</body>

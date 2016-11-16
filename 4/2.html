@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    </script>
+    <style>
+        body {
+            font-size: 12px;
+        }
+        
+        ul {
+            list-style-type: none;
+            width: 400px;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        ul li {
+            float: left;
+            padding: 5px 0px;
+        }
+        
+        ul li span {
+            width: 50px;
+            float: left;
+            padding: 0px 10px;
+        }
+        
+        z ul .odd {
+            color: #0026ff;
+        }
+        
+        ul .even {
+            color: #ff0000;
+        }
+        
+        ul .bold {
+            font-weight: bold;
+        }
+        
+        ul .focus {
+            background-color: aqua;
+        }
+        
+        div {
+            margin: 8px 0px;
+        }
+        
+        .show {
+            border: solid 1px #ccc;
+            padding: 8px;
+            width: 260px;
+            margin: 10px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div ng-controller="con">
+        <div class="{{cls}}">{{text}}</div>
+        <button ng-click="onClick(1)">Early Morning</button>
+        <button ng-click="onClick(2)">Morning</button>
+        <button ng-click="onClick(3)">Afternoon</button>
+        <button ng-click="onClick(4)">Evening</button>
+    </div>
+    <script type="text/javascript">
+        var template = angular.module('myApp', []);
+        //config 声明需要注入的对象（template）
+        //调用controlprovider
+
+        template.config(function ($provide) {
+            $provide.provider('show_1', function () {
+                this.$get = function () {
+                    return {
+                        val: function (name) {
+                            return name;
+                        }
+                    }
+                }
+            });
+        });
+        template.config(function ($provide) {
+            $provide.factory('show_2', function () {
+                return {
+                    val: function (name) {
+                        return name;
+                    }
+                }
+            });
+        });
+        template.config(function ($provide) {
+            $provide.value('show_3', function (name) {
+                return {
+                    val: function (name) {
+                        return name;
+                    }
+                }
+            });
+        });
+        template.config(function ($provide) {
+            $provide.service('show_4', function () {
+                return {
+                    val: function (name) {
+                        return name;
+                    }
+                }
+            });
+        });
+        template.controller('con', function ($scope, show_1, show_2, show_3, show_4) {
+            $scope.cls = " ";
+            $scope.onClick = function (t) {
+                switch (t) {
+                case 1:
+                    $scope.text = show_1.val("Good earlg morning");
+                    break;
+                case 2:
+                    $scope.text = show_2.val("Good  morning");
+                    break;
+                case 3:
+                    $scope.text = show_2.val("Good  afternoon");
+                    break;
+                case 4:
+                    $scope.text = show_4.val("Good evening");
+                    break;
+                }
+            }
+        });
+    </script>
+</body>
