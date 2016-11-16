@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    </script>
+    <style>
+        body {
+            font-size: 12px;
+        }
+        
+        ul {
+            list-style-type: none;
+            width: 400px;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        ul li {
+            float: left;
+            padding: 5px 0px;
+        }
+        
+        ul li span {
+            width: 50px;
+            float: left;
+            padding: 0px 10px;
+        }
+        
+        z ul .odd {
+            color: #0026ff;
+        }
+        
+        ul .even {
+            color: #ff0000;
+        }
+        
+        ul .bold {
+            font-weight: bold;
+        }
+        
+        ul .focus {
+            background-color: aqua;
+        }
+        
+        div {
+            margin: 8px 0px;
+        }
+        
+        .show {
+            background-color: brown;
+            border: solid 1px #ccc;
+            padding: 8px;
+            width: 260px;
+            margin: 10px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div ng-controller="con">
+        <div class="show">{{name}}</div>
+        <input ng-model="score" value="95">
+        <div class="show">{{score}}</div>
+    </div>
+    <script type="text/javascript">
+        var myApp = angular.module('myApp',[]);
+        myApp.controller('con',['$scope', function($scope){
+            $scope.name = "fucking !"
+        }]);
+    </script>
+
+</body>

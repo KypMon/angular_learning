@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
+    </script>
+    <style>
+        input {
+            width: 50px;
+        }
+        
+        body {
+            font-size: 12px;
+        }
+        
+        ul {
+            list-style-type: none;
+            width: 400px;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        ul li {
+            float: left;
+            padding: 5px 0px;
+        }
+        
+        ul li span {
+            width: 50px;
+            float: left;
+            padding: 0px 10px;
+        }
+        
+        z ul .odd {
+            color: #0026ff;
+        }
+        
+        ul .even {
+            color: #ff0000;
+        }
+        
+        ul .bold {
+            font-weight: bold;
+        }
+        
+        ul .focus {
+            background-color: aqua;
+        }
+        
+        div {
+            margin: 8px 0px;
+        }
+        
+        .show {
+            background-color: brown;
+            border: solid 1px #ccc;
+            padding: 8px;
+            width: 260px;
+            margin: 10px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <a href="#">HomePage</a>
+        <a href="#/book">Book</a>
+        <a href="#/game">Game</a>
+    </div>
+    <div ng-view></div>
+    <script type="text/javascript">
+        var myApp = angular.module('myApp', ['ngRoute']);
+        myApp.config(['$routeProvider', function ($routeProvider) {
+            $routeProvider
+                .when('/', {
+                    controller: 'con_1',
+                    template: "<div class = 'show'>{{title}}</div>"
+                })
+                .when('/book', {
+                    controller: 'con_2',
+                    template: "<div class = 'show'>{{title}}</div>"
+                })
+                .when('/game', {
+                    controller: 'con_3',
+                    template: "<div class = 'show'>{{title}}</div>"
+                })
+                .otherwise({
+                    redirectTo: '/'
+                });
+        }]);
+        myApp.controller('con_1', ['$scope', function ($scope) {
+            $scope.title = "This is HomePage"
+        }]);
+        myApp.controller('con_2', ['$scope', function ($scope) {
+            $scope.title = " This is book page";
+        }]);
+        myApp.controller('con_3', ['$scope', function ($scope) {
+            $scope.title = "This is game page";
+        }]);
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
+    </script>
+    <style>
+        input {
+            width: 50px;
+        }
+        
+        body {
+            font-size: 12px;
+        }
+        
+        ul {
+            list-style-type: none;
+            width: 400px;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        ul li {
+            float: left;
+            padding: 5px 0px;
+        }
+        
+        ul li span {
+            width: 50px;
+            float: left;
+            padding: 0px 10px;
+        }
+        
+        z ul .odd {
+            color: #0026ff;
+        }
+        
+        ul .even {
+            color: #ff0000;
+        }
+        
+        ul .bold {
+            font-weight: bold;
+        }
+        
+        ul .focus {
+            background-color: aqua;
+        }
+        
+        div {
+            margin: 8px 0px;
+        }
+        
+        .show {
+            background-color: brown;
+            border: solid 1px #ccc;
+            padding: 8px;
+            width: 260px;
+            margin: 10px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div ng-view></div>
+    <!--
+    <div>
+        <a href="#">HomePage</a>
+        <a href="#/book">Book</a>
+        <a href="#/game">Game</a>
+    </div>
+-->
+
+    <script type="text/javascript">
+        var myApp = angular.module('myApp', ['ngRoute']);
+        myApp.controller('con_1', ['$scope', function ($scope) {
+            $scope.students = students;
+        }]);
+        myApp.controller('con_2', function ($scope, $routeParams) {
+            for (var i = 0; i < students.length; i++) {
+                //在页面调转时，id传入 遍历寻找对应的stu信息
+                if (students[i].stuId == $routeParams.id) {
+                    $scope.student = students[i];
+                    break;
+                }
+            }
+        });
+        myApp.config(['$routeProvider', function ($routeProvider) {
+            $routeProvider
+                .when('/', {
+                    controller: "con_1",
+                    templateUrl: "7_1.html"
+                })
+                .when('/view/:id', {
+                    controller: "con_2",
+                    templateUrl: "7_2.html",
+                    publicAccess: true
+                })
+                .otherwise({
+                    redirectTo: "/"
+                });
+        }]);
+        var students = [
+            {
+                stuId:1000,
+                name: "james",
+                sex: "males",
+                age: 24,
+                score: 94
+                                    },
+            {
+                stuId:1001,
+                name: "sam",
+                sex: "males",
+                age: 26,
+                score: 88
+                                    },
+            {
+                stuId:1002,
+                name: "Jenny",
+                sex: "females",
+                age: 34,
+                score: 89
+                                    },
+            {
+                stuId:1003,
+                name: "lily",
+                sex: "females",
+                age: 46,
+                score: 98
+                                    }
+                                ];
+    </script>
+
+</body>
+
+</html>
