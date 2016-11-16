@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="lottery">
+
+<head>
+    <meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+    <title>Prizing game</title>
+    <link href="style.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+
+<body>
+   <div ng-controller="ctrl_lottery" id="lottery">
+       <div id="step1">
+           <button ng-click="start()">Start</button>
+       </div>
+       <div id="step2">
+           <div ng-repeat="item in items" id="{{item.id}}" class="item"
+           ng-class="{'active':item.status}">
+               {{item.name}}
+           </div>
+        </div>
+        <div id="step3" class="hide top">
+            <a href="javascript:void(0)" ng-click="reset()" class="reset">Restart
+            </a>
+            <a href="javascript:void(0)" ng-click="edit()" class="edit">
+                Change the gift
+            </a>
+            <button class="active">{{result}}</button>
+        </div>
+        <div id="step4" class="hide top">
+            <a href="javascript:void(0)" ng-click="return()" class="reset">
+                Back
+            </a>
+            <form ng-submit="add()">
+                <input type="text" ng-model="name" required placeholder="object name">
+                <input class="btn" type="submit" value="ADD">
+            </form>
+            <ul>
+                <li ng-repeat="item in items">
+                    <span>{{item.id}}</span>
+                    <span class="span">{{item.name}}</span>
+                    <a href="javascript:void(0)" ng-click="del(item.id)">
+                        DELETE
+                    </a>
+                </li>
+            </ul>
+        </div>
+   </div>
+   <script src="app.js"></script>
+</body>
+</html>
