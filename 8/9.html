@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="a8_8">
+
+<head>
+    <title>Use require and controller</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <style type="text/css">
+        .frame {
+            padding: 2px 8px;
+            margin: 0px;
+            font-size: 12px;
+            width: 320px;
+            background-color: #EEE;
+        }
+        
+        .tip {
+            font-size: 9px;
+            color: #666;
+            margin: 3px 0px;
+            padding: 5px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame">
+        <ts-parent>
+            <div class="tip">{{ptip}}</div>
+            <ts-child>
+                <div class="tip">{{ctip}}</div>
+            </ts-child>
+            <button ng-click="click()">Change</button>
+        </ts-parent>
+    </div>
+
+    <script type="text/javascript">
+     var app = angular.module('a8_8', [])
+     .directive('tsParent', function(){
+         return {
+             restrict: 'EAC',
+             controller: function($scope, $compile, $http){
+                 //c代表新参子元素的scope对象
+                 this.addChild = function(c){
+                     $scope.ptip = "Good Weather!";  //2.1
+
+                     $scope.click = function(){         //3
+                         $scope.tmp = $scope.ptip;
+                         $scope.ptip = c.ctip;
+                         c.ctip = $scope.tmp;
+                     }
+                 }
+             }
+         };
+     })
+     .directive('tsChild', function(){
+         return{
+             restrict:'EAC',
+             //寻找tsParent
+             require: '^?tsParent',
+             //ctrl  通过ctrl访问父元素中的属性或者方法
+             link: function(scope, iEle, iAttrs, ctrl){
+                 scope.ctip = 'Good air';   // 1 
+                 ctrl.addChild(scope);   // 2  
+             }
+         };
+     })
+    </script>
+
+</body>
+
+</html>
