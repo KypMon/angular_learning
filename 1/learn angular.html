@@ -1,0 +1,19 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- SCROLLS -->
+  <!-- load bootstrap and fontawesome via CDN -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- SPELLS -->
+  <!-- load angular via CDN -->
+  <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script></script>
+  <script src="script.js"></script>
+</head>
+<body ng-app="ezstuff" ng-init="sb = {name:'somebody',gender:'male',age:28}">
+	<!-- 下面两个指令都绑定到变量sb上-->
+	<ez-namecard-editor data="sb"></ez-namecard-editor>
+	<div ez-logger data="sb"></div>
+</body>
+</html>
