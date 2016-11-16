@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>Use require and controller</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <style type="text/css">
+        .frame {
+            padding: 2px 8px;
+            margin: 0px;
+            font-size: 12px;
+            width: 320px;
+            background-color: #EEE;
+        }
+        
+        .tip {
+            font-size: 9px;
+            color: #666;
+            margin: 3px 0px;
+            padding: 5px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame" ng-controller="con">
+        <div>URL:{{url}}</div>
+        <div>hash:{{hash}}</div>
+        <div>search:{{search}}</div>
+        <div>path:{{path}}</div>
+        <button ng-click="click_a()">Modify</button>
+    </div>
+
+    <script type="text/javascript">
+        angular.module('myApp', [])
+            .controller('con', function ($scope, $location) {
+                $scope.url = $location.url()
+                $scope.hash = $location.hash()
+                $scope.search = $location.search();
+                $scope.path = $location.path();
+                $scope.click_a = function () {
+                    $location.search({ c:'3', d:'4'});
+                }
+            });
+    </script>
+
+</body>
+
+</html>

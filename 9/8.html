@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>Use require and controller</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <style type="text/css">
+        .frame {
+            padding: 2px 8px;
+            margin: 0px;
+            font-size: 12px;
+            width: 320px;
+            background-color: #EEE;
+        }
+        
+        .tip {
+            font-size: 9px;
+            color: #666;
+            margin: 3px 0px;
+            padding: 5px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame" ng-controller="con">
+        <div>
+            <input id="text1" type="text" ng-model="locationPath" />
+            <div>{{locationPath}}</div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var myApp = angular.module('myApp', [])
+            .controller("con", function($scope, $location){
+                //地址栏 path-> new value
+                $scope.$watch('locationPath', function(path){
+                    //将$location服务.path的地址改为新值
+                   $location.path(path); 
+                });
+                
+                //页面
+                $scope.$watch('$location.path()', function(path){
+                   $scope.locationPath = path; 
+                });
+            })
+    </script>
+
+</body>
+
+</html>

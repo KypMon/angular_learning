@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="a9_4">
+
+<head>
+    <title>Use require and controller</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <style type="text/css">
+        .frame {
+            padding: 2px 8px;
+            margin: 0px;
+            font-size: 12px;
+            width: 320px;
+            background-color: #EEE;
+        }
+        
+        .tip {
+            font-size: 9px;
+            color: #666;
+            margin: 3px 0px;
+            padding: 5px 0px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="frame" ng-controller="c9_4">
+        <div>当前状态: {{tip_a}}</div>
+        <div>CurrentURL : {{current}} </div>
+        <hr />
+        <div>当前状态2 : {{tip_b}}</div>
+        <div>LastURL : {{previous}}</div>
+    </div>
+    <script type="text/javascript">
+        var app = angular.module('a9_4', [])
+            .controller('c9_4', function ($rootScope, $window, $location, $log, $scope) {
+                $rootScope.$on('$locationChangeStart',
+                    function (evt, current, previous) {
+                        $scope.tip_a = "URL address will change";
+                        var yn = $window.confirm('sure to leave?');
+                        if (yn) {
+                            $location.path('/change');
+                            return;
+                        }
+                        evt.preventDefault();
+                        $scope.tip_b = "user canceled";
+                        $scope.current = current;
+                        $scope.previous = previous;
+                        return;
+                    });
+                $rootScope.$on('$locationChangeSuccess', function(evt, current, previous){
+                    $scope.tip_b = "URL changed";
+                    $scope.current = current;
+                    $scope.previous = previous;
+                });
+            });
+    </script>
+</body>
