@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>Use require and controller</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <style type="text/css">
+        .frame {
+            padding: 2px 8px;
+            margin: 0px;
+            font-size: 12px;
+            width: 320px;
+            background-color: #EEE;
+        }
+        
+        .tip {
+            font-size: 9px;
+            color: #666;
+            margin: 3px 0px;
+            padding: 5px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame" ng-controller="con" id="control">
+        <p>{{tip}}</p>
+    </div>
+
+    <script type="text/javascript">
+        var myApp = angular.module('myApp', [])
+        //$compile  compile template, to use append() 
+            .controller("con", function ($scope, $timeout) {
+               $scope.tip = "hello damn it thing";
+                
+                setTimeout(function(){
+                    $scope.$apply(function(){
+                        $scope.tip = "I change the content";
+                    })
+                }, 2000);
+            
+                $timeout(function(){
+                    $scope.tip = "The twice change again";
+                }, 3000);  
+                
+            
+            });
+    </script>
+
+</body>
+
+</html>

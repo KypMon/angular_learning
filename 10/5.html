@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>Use require and controller</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <style type="text/css">
+        .frame {
+            padding: 2px 8px;
+            margin: 0px;
+            font-size: 12px;
+            width: 320px;
+            background-color: #EEE;
+        }
+        
+        .frame ul {
+            margin: 0px;
+            padding: 0px;
+            list-style-type: none;
+        }
+        
+        .frame ul li:first-child {
+            font-weight: bold;
+            font-size: 13px;
+        }
+        
+        .frame ul li {
+            height: 28px;
+            line-height: 28px;
+        }
+        
+        .frame ul li span {
+            float: left;
+            width: 80px;
+        }
+        
+        .frame ul li span:last-child {
+            cursor: pointer;
+        }
+        
+        .tip {
+            font-size: 9px;
+            color: #666;
+            margin: 3px 0px;
+            padding: 5px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame" ng-controller="con">
+        <button ng-click="update()">Update</button>
+        <ul ng-repeat="user in users track by user.id">
+            <li>
+                <span>{{user.id}}</span>
+                <span>{{user.name}}</span>
+            </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        angular.module('myApp', [])
+            .controller('con', function ($scope) {
+                var users = [{
+                    id: 1001,
+                    name: "james",
+                    score: 94
+                        }, {
+                    id: 1002,
+                    name: "sam",
+                    score: 88
+                         }, {
+                    id: 1003,
+                    name: "Lily",
+                    score: 48
+                         }, {
+                    id: 1004,
+                    name: "jack",
+                    score: 99
+                     }];
+                $scope.users = users;
+                console.log($scope.users);
+                $scope.update = function () {
+                    var result = [{
+                        id: 1005,
+                        name: "wade",
+                        score: 54
+                         }, {
+                        id: 1006,
+                        name: "Lebron",
+                        score: 68
+                         }, {
+                        id: 1007,
+                        name: "Antony",
+                        score: 55
+                         }, {
+                        id: 1008,
+                        name: "kobe",
+                        score: 87
+                        }];
+                    $scope.users = result;
+                    console.log($scope.users);
+                };
+            });
+    </script>
+
+</body>
+
+</html>

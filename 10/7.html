@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>Use require and controller</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <style type="text/css">
+        .frame {
+            padding: 2px 8px;
+            margin: 0px;
+            font-size: 12px;
+            width: 320px;
+            background-color: #EEE;
+        }
+        
+        .frame ul {
+            margin: 0px;
+            padding: 0px;
+            list-style-type: none;
+        }
+        
+        .frame ul li:first-child {
+            font-weight: bold;
+            font-size: 13px;
+        }
+        
+        .frame ul li {
+            height: 28px;
+            line-height: 28px;
+        }
+        
+        .frame ul li span {
+            float: left;
+            width: 80px;
+        }
+        
+        .frame ul li span:last-child {
+            cursor: pointer;
+        }
+        
+        .tip {
+            font-size: 9px;
+            color: #666;
+            margin: 3px 0px;
+            padding: 5px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame" ng-controller="con as o">
+        <div ng-click="o.click('parent', $event)">
+            <br />
+            <input type="checkbox" ng-click="o.change($event)" ng-model="o.stopPropagation" />Stop it?
+            <br />
+            <br />
+            <button type="button" ng-click="o.click('button',$event)">Press me</button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        angular.module('myApp', [])
+            .controller('con', function ($scope) {
+                var obj = this;
+                obj.click = function (name, $event) {
+                    console.log(name + "is activited");
+                    if (obj.stopPropagation) {
+                        $event.stopPropagation();
+                    }
+                };
+                obj.change = function ($event) {
+                    $event.stopPropagation();
+                }
+                return obj;
+            });
+    </script>
+
+</body>
+
+</html>

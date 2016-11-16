@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>Use require and controller</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <style type="text/css">
+        .frame {
+            padding: 2px 8px;
+            margin: 0px;
+            font-size: 12px;
+            width: 320px;
+            background-color: #EEE;
+        }
+        
+        .frame ul {
+            margin: 0px;
+            padding: 0px;
+            list-style-type: none;
+        }
+        
+        .frame ul li:first-child {
+            font-weight: bold;
+            font-size: 13px;
+        }
+        
+        .frame ul li {
+            height: 28px;
+            line-height: 28px;
+        }
+        
+        .frame ul li span {
+            float: left;
+            width: 80px;
+        }
+        
+        .frame ul li span:last-child {
+            cursor: pointer;
+        }
+        
+        .tip {
+            font-size: 9px;
+            color: #666;
+            margin: 3px 0px;
+            padding: 5px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame">
+        <ul ng-controller="con">
+            <li>
+                <span>No.</span>
+                <span>Name.</span>
+                <span>Score.</span>
+                <span>operate.</span>
+            </li>
+            <li ng-repeat="item in items | filter : fscore">
+                <span>{{item.id}}</span>
+                <span>{{item.name}}</span>
+                <span>{{item.score}}</span>
+                <span ng-click="remove(item, $index)">Delete</span>
+            </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        var myApp = angular.module('myApp', [])
+            .controller('con', function ($scope) {
+                $scope.items = getStu();
+                $scope.fscore = function (e) {
+                    return e.score > 60;
+                };
+                $scope.remove = function (item, index) {
+                    console.log(item);
+                    var item2 = $scope.items[index];
+                    console.log(item2);
+                };
+            });
+
+        function getStu() {
+            return [{
+                    id:1001,
+                    name: "james",
+                    score: 94
+                                    },
+                {
+                    id:1002,
+                    name: "sam",
+                    score: 88
+                                    },
+                {
+                    id:1002,
+                    name: "Lily",
+                    score: 48
+                                    },
+                {
+                    id:1003,
+                    name: "jack",
+                    score: 99
+                                    }
+
+        ]};
+    </script>
+
+</body>
+
+</html>

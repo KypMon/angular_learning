@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>Use require and controller</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <style type="text/css">
+        .frame {
+            padding: 2px 8px;
+            margin: 0px;
+            font-size: 12px;
+            width: 320px;
+            background-color: #EEE;
+        }
+        
+        .tip {
+            font-size: 9px;
+            color: #666;
+            margin: 3px 0px;
+            padding: 5px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame" ng-controller="con" id="control">
+        <button ng-click="add()">Add element</button>
+        <button ng-click="del()">delete element</button>
+    </div>
+
+    <script type="text/javascript">
+        var myApp = angular.module('myApp', [])
+        //$compile  compile template, to use append() 
+            .controller("con", function ($scope, $compile) {
+                $scope.hello = "hello shit";
+                $scope.log = function () {
+                    console.log("this is add dynamically");
+                }
+                var html = "<div ng-click='log()'>{{hello}}</div>";
+                // change to jquery object
+                var template = angular.element(html);
+                //compile it to use
+                var newHtml = $compile(template)($scope);
+                $scope.add = function () {
+                    angular.element(document
+                        .getElementById("control")).append(newHtml);
+                }
+                $scope.del = function(){
+                    if(newHtml){
+                        newHtml.remove();
+                    }
+                }
+            });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>Use require and controller</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <style type="text/css">
+        .frame {
+            padding: 2px 8px;
+            margin: 0px;
+            font-size: 12px;
+            width: 320px;
+            background-color: #EEE;
+        }
+        
+        .frame ul {
+            margin: 0px;
+            padding: 0px;
+            list-style-type: none;
+        }
+        
+        .frame ul li:first-child {
+            font-weight: bold;
+            font-size: 13px;
+        }
+        
+        .frame ul li {
+            height: 28px;
+            line-height: 28px;
+        }
+        
+        .frame ul li span {
+            float: left;
+            width: 80px;
+        }
+        
+        .frame ul li span:last-child {
+            cursor: pointer;
+        }
+        
+        .tip {
+            font-size: 9px;
+            color: #666;
+            margin: 3px 0px;
+            padding: 5px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame" ng-controller="con as o">
+        <div>
+            value of a: {{a}} <br />
+            value of b: {{b}}
+        </div>
+        <div>
+            popular way: <input type="checkbox" ng-model="a" />
+        </div>
+        <div ng-if="!a">
+            ngif way: <input type="checkbox" ng-model="$parent.b" />
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        angular.module('myApp', [])
+            .controller('con', function ($scope) {
+                $scope.a = false;
+                $scope.b = false;
+            });
+    </script>
+
+</body>
+
+</html>
