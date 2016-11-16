@@ -1,0 +1,94 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html ng-app="a2_11">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    </script>
+    <style>
+        body {
+            font-size: 12px;
+        }
+        
+        ul {
+            list-style-type: none;
+            width: 400px;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        ul li {
+            float: left;
+            padding: 5px 0px;
+        }
+        
+        ul li span {
+            width: 50px;
+            float: left;
+            padding: 0px 10px;
+        }
+        
+        ul .odd {
+            color: #0026ff;
+        }
+        
+        ul .even {
+            color: #ff0000;
+        }
+        
+        ul .bold {
+            font-weight: bold;
+        }
+        
+        ul .focus {
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div ng-controller="c2_11">
+        <ul>
+            <li ng-class="{{bold}}">
+                <span>No.</span>
+                <span>Name</span>
+                <span>gender</span>
+                <span>First?</span>
+                <span>Last?</span>
+            </li>
+            <li ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="stu in data" ng-click="li_click($index)" ng-class="{focus:$index==focus}">
+                <span>{{$index+1}}</span>
+                <span>{{stu.name}}</span>
+                <span>{{stu.sex}}</span>
+                <span>{{$first?'Yes':'No'}}</span>
+                <span>{{$last?'Yes':'No'}}</span>
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        var a2_11 = angular.module('a2_11', []);
+        a2_11.controller('c2_11', ['$scope', function ($scope) {
+            $scope.bold = "bold";
+            $scope.li_click = function(i){
+                $scope.focus = i;
+            };
+            $scope.data = [{
+                    name: "sam",
+                    sex: "male"
+                },
+                {
+                    name: "jack",
+                    sex: "female"
+                },
+                {
+                    name: "alex",
+                    sex: "male"
+                }];
+        }]);
+    </script>
+</body>
+
+</html>

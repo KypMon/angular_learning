@@ -1,0 +1,28 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html ng-app="a2_9">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    </script>
+</head>
+
+<body>
+    <script type="text/ng-template" id="tplbase"> 
+<!--       模板-->
+        name:{{name}},<br/>Email:{{email}}
+    </script>
+    <div ng-include="'tplbase'" ng-controller="c2_9"></div>
+    <script type="text/javascript">
+        var a2_9 = angular.module('a2_9',[]);
+        a2_9.controller('c2_9', ['$scope', function($scope){
+            $scope.name = "Shit";
+            $scope.email = "Fuck@qq.com";
+        }]);
+    </script>
+</body>
+
+</html>

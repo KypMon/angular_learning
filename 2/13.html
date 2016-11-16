@@ -1,0 +1,84 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html ng-app="a2_13">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    </script>
+    <style>
+        body {
+            font-size: 12px;
+        }
+        
+        ul {
+            list-style-type: none;
+            width: 400px;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        ul li {
+            float: left;
+            padding: 5px 0px;
+        }
+        
+        ul li span {
+            width: 50px;
+            float: left;
+            padding: 0px 10px;
+        }
+        
+        ul .odd {
+            color: #0026ff;
+        }
+        
+        ul .even {
+            color: #ff0000;
+        }
+        
+        ul .bold {
+            font-weight: bold;
+        }
+        
+        ul .focus {
+            background-color: aqua;
+        }
+        
+        div {
+            margin: 8px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <form name="temp_form" ng-submit="save()" ng-controller="c2_13">
+        <div>
+            <input name="t_name" ng-model="name" type="text" required />
+            <span ng-show="temp_form.t_name.$error.required">Name  is empty</span>
+        </div>
+        <div>
+            <input name="t_email" ng-model="email" type="email" required />
+<!--            判断的是组件的名字进行判断-->
+            <span ng-show="temp_form.t_email.$error.required">Email is empty</span> 
+            <span ng-show="temp_form.t_email.$error.email">The format is not correct</span>
+        </div>
+        <input type="submit" ng-disabled="temp_form.$invalid" value="submit" />
+<!--        $invaild 表示未验证通过-->
+    </form>
+    <script type="text/javascript">
+        var a2_13 = angular.module('a2_13',[]);
+        a2_13.controller('c2_13',["$scope", function($scope){
+//            $scope.name = "shit";
+//            $scope.email = "123@123.com";
+            $scope.save = function(){
+                alert("submit correctly");
+            };
+        }]);
+  
+    </script>
+</body>
+
+</html>

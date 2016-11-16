@@ -1,0 +1,101 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html ng-app="a2_15">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    </script>
+    <style>
+        body {
+            font-size: 12px;
+        }
+        
+        ul {
+            list-style-type: none;
+            width: 400px;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        ul li {
+            float: left;
+            padding: 5px 0px;
+        }
+        
+        ul li span {
+            width: 50px;
+            float: left;
+            padding: 0px 10px;
+        }
+        
+        ul .odd {
+            color: #0026ff;
+        }
+        
+        ul .even {
+            color: #ff0000;
+        }
+        
+        ul .bold {
+            font-weight: bold;
+        }
+        
+        ul .focus {
+            background-color: aqua;
+        }
+        
+        div {
+            margin: 8px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <form name="temp_form" ng-controller="c2_15">
+        <div>
+            select:
+            <select ng-model="a" ng-options="v.id as v.name for v in a_data" ng-change="a_change(a)">
+                <option value="">--choose--</option>
+            </select>
+            <span>{{a_show}}</span>
+        </div>
+        <div>class:
+            <select ng-model="b" ng-options="v.id as v.name group by v.grade for v in b_data" ng-change="b_change(b)" >
+                <option value="">---Choose--</option>
+            </select>
+            <span>{{b_show}}</span>
+        </div>
+    </form>
+    <script type="text/javascript">
+        var a2_15 = angular.module('a2_15', []);
+        a2_15.controller('c2_15', ['$scope', function($scope){
+            $scope.a_data = [
+                {id:"1001", name:"element"},
+                {id:"1002", name:"junior"},
+                {id:"1003", name:"senior"}
+            ];
+            $scope.b_data = [
+                {id:"1001", name:"(1)class", grade:"Grade1"},
+                {id:"1002", name:"(2)class", grade:"Grade1"},
+                {id:"2001", name:"(1)class", grade:"Grade2"},
+                {id:"2002", name:"(2)class", grade:"Grade2"},
+                {id:"3001", name:"(1)class", grade:"Grade3"},
+                {id:"3002", name:"(2)class", grade:"Grade3"}
+            ];
+            $scope.a = "";
+            $scope.b = "";
+            $scope.a_change = function(a){
+                $scope.a_show = "You choose: "+a;
+            }
+            $scope.b_change = function(b){
+                $scope.b_show = "You choose: "+b;
+            }
+        }]);
+    
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html ng-app="a2_7">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    </script>
+</head>
+
+<body>
+    <div ng-controller="c2_7">
+        <span class="show">{{text}}</span>
+        <input id="btnShow" type="button" ng-click="click_show();" value="SHOW THE WORDS" />
+        <input id="btnShow" type="button" ng-click="click_para('Press the button! with para');" value="Have the para" />
+    </div>
+    <script type="text/javascript">
+        var a2_7 = angular.module('a2_7', []);
+        a2_7.controller('c2_7', ['$scope', function ($scope) {
+            $scope.text = 'hello ! shit';
+            $scope.click_show = function () {
+                $scope.text = "welcome to this fucking world";
+                $scope.click_para = function (ptext) {
+                    $scope.text = ptext;
+                };
+            };
+        }]);
+    </script>
+</body>
+
+</html>

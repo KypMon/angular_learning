@@ -1,0 +1,29 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html ng-app="a2_6">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    </script>
+</head>
+
+<body>
+    <div ng-controller="c2_6">
+        <span class="show">{{text}}</span>
+        <input id="btnShow" type="button" ng-click="click_show();" value="SHOW THE WORDS">
+    </div>
+    <script type="text/javascript">
+        var a2_6 = angular.module('a2_6', []);
+        a2_6.controller('c2_6', ['$scope', function($scope){
+            $scope.text = 'hello ! shit';
+            $scope.click_show = function(){
+                $scope.text = "welcome to this fucking world";
+            };
+        }]);
+    </script>
+</body>
+
+</html>

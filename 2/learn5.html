@@ -1,0 +1,29 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html ng-app="a2_5">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    </script>
+</head>
+
+<body>
+    <div ng-controller="c2_5">
+        <span class="show">{{span_show()}}</span>
+    </div>
+    <script type="text/javascript">
+        var a2_5 = angular.module('a2_5', []);
+        a2_5.controller('c2_5', ['$scope', function($scope){
+            $scope.text = 'hello ! shit';
+            $scope.span_show = function(){
+                $scope.text = "welcome to this fucking world";
+                return $scope.text;
+            }
+        }]);
+    </script>
+</body>
+
+</html>

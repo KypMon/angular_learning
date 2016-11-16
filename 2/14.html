@@ -1,0 +1,82 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html ng-app="a2_14">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    </script>
+    <style>
+        body {
+            font-size: 12px;
+        }
+        
+        ul {
+            list-style-type: none;
+            width: 400px;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        ul li {
+            float: left;
+            padding: 5px 0px;
+        }
+        
+        ul li span {
+            width: 50px;
+            float: left;
+            padding: 0px 10px;
+        }
+        
+        ul .odd {
+            color: #0026ff;
+        }
+        
+        ul .even {
+            color: #ff0000;
+        }
+        
+        ul .bold {
+            font-weight: bold;
+        }
+        
+        ul .focus {
+            background-color: aqua;
+        }
+        
+        div {
+            margin: 8px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <form name="temp_form" ng-submit="save()" ng-controller="c2_14">
+        <div>
+            <input type="checkbox" ng-model="a" ng-true-value="Agree" ng-false-value="disagree" / >
+            Agreeeeeeee
+        </div>
+        <div>
+            gender:
+            <input type="radio" ng-model="b" value="Male" /> male
+            <input type="radio" ng-model="b" value="Female"/>
+            Female
+        </div>
+        <input type="submit" value="Submit" />
+        <div>{{answer}}</div>
+    </form>
+    <script type="text/javascript">
+        var a2_14 = angular.module('a2_14',[]);
+        a2_14.controller('c2_14' ,  ['$scope', function($scope){
+            $scope.save = function(){
+                $scope.answer = "You choose:"+$scope.a+" and "+$scope.b;
+            };
+        }]);
+  
+    </script>
+</body>
+
+</html>

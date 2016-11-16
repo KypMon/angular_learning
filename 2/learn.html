@@ -1,0 +1,40 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html ng-app="">
+
+<head>
+    <!-- SCROLLS -->
+    <!-- load bootstrap and fontawesome via CDN -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    </script>
+</head>
+
+<body>
+    <div ng-controller="c2_1">
+        Expression:
+        <br/>
+        <input type="text" ng-model="expr1" />
+        <button ng-click="testExp1(expr1)">Calculate</button>
+        <br/>
+        <br/> Execute the expression
+        <br>
+        <input type='text' ng-model="expr2" />
+        <span ng-bind="$eval(expr2)"></span>
+    </div>
+    <script type="text/javascript">
+        function c2_1($scope) {
+            $scope.expr1 = 20;
+            $scope.expr2 = '22+1 | number:1';
+            $scope.testExp1 = function (expr) {
+                var newv = parseInt(expr) + 1;
+                console.log(newv);
+            };
+        }
+    </script>
+</body>
+
+</html>

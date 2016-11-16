@@ -1,0 +1,75 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html ng-app="a2_12">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    </script>
+    <style>
+        body {
+            font-size: 12px;
+        }
+        
+        ul {
+            list-style-type: none;
+            width: 400px;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        ul li {
+            float: left;
+            padding: 5px 0px;
+        }
+        
+        ul li span {
+            width: 50px;
+            float: left;
+            padding: 0px 10px;
+        }
+        
+        ul .odd {
+            color: #0026ff;
+        }
+        
+        ul .even {
+            color: #ff0000;
+        }
+        
+        ul .bold {
+            font-weight: bold;
+        }
+        
+        ul .focus {
+            background-color: aqua;
+        }
+        div{
+            margin:8px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div ng-controller="c2_12">
+        <div ng-show={{isShow}}>Shit</div>
+        <div ng-hide={{isHide}}>Damn it</div>
+        <ul ng-switch on={{switch}}>
+            <li ng-switch-when="1"> Shit1?</li>
+            <li ng-switch-when="2"> Shit2?</li>
+            <li ng-switch-default>More...</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        var a2_12 = angular.module('a2_12',[]);
+        a2_12.controller('c2_12',['$scope', function($scope){
+            $scope.isShow = true;
+            $scope.isHide = false;
+            $scope.switch = 3;
+        }]);
+    </script>
+</body>
+
+</html>

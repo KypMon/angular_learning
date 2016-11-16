@@ -1,0 +1,25 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html ng-app="a2__4">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    </script>
+</head>
+
+<body>
+    <div ng-controller="c2_4">
+        <span>{{text}}</span>
+    </div>
+    <script type="text/javascript">
+        var a2_4 = angular.module('a2__4', []);
+        a2_4.controller('c2_4', ['$scope', function($scope){
+            $scope.text = 'hello ! shit';
+        }]);
+    </script>
+</body>
+
+</html>

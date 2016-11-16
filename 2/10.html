@@ -1,0 +1,74 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html ng-app="a2_10">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    </script>
+    <style>
+        body {
+            font-size: 12px;
+        }
+        
+        ul {
+            list-style-type: none;
+            width: 400px;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        ul li {
+            float: left;
+            padding: 5px 0px;
+        }
+        
+        ul li span {
+            width: 50px;
+            float: left;
+            padding: 0px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div ng-controller="c2_10">
+        <ul>
+            <li>
+                <span>No.</span>
+                <span>Name</span>
+                <span>gender</span>
+                <span>First?</span>
+                <span>Last?</span>
+            </li>
+            <li ng-repeat="stu in data">
+                <span>{{$index+1}}</span>
+                <span>{{stu.name}}</span>
+                <span>{{stu.sex}}</span>
+                <span>{{$first?'Yes':'No'}}</span>
+                <span>{{$last?'Yes':'No'}}</span>
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        var a2_10 = angular.module('a2_10', []);
+        a2_10.controller('c2_10', ['$scope', function ($scope) {
+            $scope.data = [{
+                    name: "sam",
+                    sex: "male"
+                },
+                {
+                    name: "jack",
+                    sex: "female"
+                },
+                {
+                    name: "alex",
+                    sex: "male"
+                }];
+        }]);
+    </script>
+</body>
+
+</html>

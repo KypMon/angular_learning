@@ -1,0 +1,31 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html ng-app="">
+
+<head>
+    <!-- SCROLLS -->
+    <!-- load bootstrap and fontawesome via CDN -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    </script>
+</head>
+
+<body>
+    <div ng-controller="c2_3">
+        <span> {{tmp}}</span>
+        <button ng-click="error();">Press </button>
+    </div>
+    <script type="text/javascript">
+        function c2_3( $scope) {
+            $scope.temp = "shit";
+            $scope.error = function(){
+                console.log(tmp);
+            }
+        }
+    </script>
+</body>
+
+</html>
