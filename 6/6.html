@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
+    </script>
+    <style>
+        input {
+            width: 50px;
+        }
+        
+        body {
+            font-size: 12px;
+        }
+        
+        ul {
+            list-style-type: none;
+            width: 400px;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        ul li {
+            float: left;
+            padding: 5px 0px;
+        }
+        
+        ul li span {
+            width: 50px;
+            float: left;
+            padding: 0px 10px;
+        }
+        
+        z ul .odd {
+            color: #0026ff;
+        }
+        
+        ul .even {
+            color: #ff0000;
+        }
+        
+        ul .bold {
+            font-weight: bold;
+        }
+        
+        ul .focus {
+            background-color: aqua;
+        }
+        
+        div {
+            margin: 8px 0px;
+        }
+        
+        .show {
+            background-color: rosybrown;
+            border: solid 1px #ccc;
+            padding: 8px;
+            width: 260px;
+            margin: 10px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div ng-controller="con">
+        <div class="show">You choose:{{result}}</div>
+        <button ng-click="confirm('Delete this?')">Delete</button>
+    </div>
+    <script type="text/javascript">
+        angular.module('myApp', [])
+            .factory('$notify', ['$window', function ($window) {
+                return function (msg) {
+                    return $window.confirm(msg) ? "Yes" : "No";
+                }
+           }])
+            .controller('con',['$scope', '$notify', function($scope, $notify){
+                $scope.confirm = function (msg){
+                  $scope.result = $notify(msg);  
+                };
+            }]);
+    </script>
+
+</body>
+
+</html>
