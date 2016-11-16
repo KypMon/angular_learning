@@ -1,0 +1,163 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    </script>
+    <style>
+        body {
+            font-size: 12px;
+        }
+        
+        ul {
+            list-style-type: none;
+            width: 400px;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        ul li {
+            float: left;
+            padding: 5px 0px;
+        }
+        
+        ul li span {
+            width: 50px;
+            float: left;
+            padding: 0px 10px;
+        }
+        
+        z ul .odd {
+            color: #0026ff;
+        }
+        
+        ul .even {
+            color: #ff0000;
+        }
+        
+        ul .bold {
+            font-weight: bold;
+        }
+        
+        ul .focus {
+            background-color: aqua;
+        }
+        
+        div {
+            margin: 8px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div ng-controller="con">
+        <ul ng-controller="class_1">
+           <li ng-class="{{school}}">{{s_name}}{{c_name}}</li>
+            <li ng-class="{{bold}}">
+                <span>No.</span>
+                <span ng-click="title='name';desc=!desc">Name.</span>
+                <span ng-click="title='sex';desc=!desc">Gender.</span>
+                <span ng-click="title='age';desc=!desc">Age.</span>
+                <span ng-click="title='score';desc=!desc">Grade.</span>
+            </li>
+            <li ng-repeat="stu in data |filter :{name:key}" ng-class-odd="'odd'" ng-class-even="'even'">
+                <span>{{$index+1}}</span>
+                <span>{{stu.name}}</span>
+                <span>{{stu.sex}}</span>
+                <span>{{stu.age}}</span>
+                <span>{{stu.score}}</span>
+            </li>
+        </ul>
+        <ul ng-controller="class_2">
+           <li ng-class="{{school}}">{{s_name}}{{c_name}}</li>
+            <li ng-class="{{bold}}">
+                <span>No.</span>
+                <span ng-click="title='name';desc=!desc">Name.</span>
+                <span ng-click="title='sex';desc=!desc">Gender.</span>
+                <span ng-click="title='age';desc=!desc">Age.</span>
+                <span ng-click="title='score';desc=!desc">Grade.</span>
+            </li>
+            <li ng-repeat="stu in data |filter :{name:key}" ng-class-odd="'odd'" ng-class-even="'even'">
+                <span>{{$index+1}}</span>
+                <span>{{stu.name}}</span>
+                <span>{{stu.sex}}</span>
+                <span>{{stu.age}}</span>
+                <span>{{stu.score}}</span>
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        var template = angular.module('myApp', []);
+        template.controller('con', ['$scope', function ($scope) {
+            $scope.bold = "bold";
+            $scope.s_name = 'shit school';
+            $scope.school = "school";
+                    }]);
+        template.controller('class_1', ['$scope', function ($scope) {
+            $scope.c_name = "class 1";
+            $scope.data = [
+                {
+                    name: "sam",
+                    sex: "male",
+                    age: 12,
+                    score: 88
+                },
+                {
+                    name: "lily",
+                    sex: "female",
+                    age: 13,
+                    score: 85
+                }
+            ];
+        }]);
+        template.controller('class_2', ['$scope', function ($scope) {
+            $scope.c_name = "class 2";
+            $scope.data = [
+                {
+                    name: "james",
+                    sex: "male",
+                    age: 12,
+                    score: 78
+                },
+                {
+                    name: "Hasily",
+                    sex: "female",
+                    age: 13,
+                    score: 95
+                }
+            ];
+        }]);
+        //        $scope.data = [
+        //            {
+        //                name: "james",
+        //                sex: "males",
+        //                age: 24,
+        //                score: 94
+        //                            },
+        //            {
+        //                name: "sam",
+        //                sex: "males",
+        //                age: 26,
+        //                score: 88
+        //                            },
+        //            {
+        //                name: "Jenny",
+        //                sex: "females",
+        //                age: 34,
+        //                score: 89
+        //                            },
+        //            {
+        //                name: "lily",
+        //                sex: "females",
+        //                age: 46,
+        //                score: 98
+        //                            }
+        //                        ];
+    </script>
+</body>
+
+</html>

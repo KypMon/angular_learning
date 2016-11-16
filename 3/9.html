@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    </script>
+    <style>
+        body {
+            font-size: 12px;
+        }
+        
+        ul {
+            list-style-type: none;
+            width: 400px;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        ul li {
+            float: left;
+            padding: 5px 0px;
+        }
+        
+        ul li span {
+            width: 50px;
+            float: left;
+            padding: 0px 10px;
+        }
+        
+        z ul .odd {
+            color: #0026ff;
+        }
+        
+        ul .even {
+            color: #ff0000;
+        }
+        
+        ul .bold {
+            font-weight: bold;
+        }
+        
+        ul .focus {
+            background-color: aqua;
+        }
+        
+        div {
+            margin: 8px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div ng-controller="con">
+        <div ng-controller="con1">
+            <button ng-click="to_parent()">TO father</button>
+            <button ng-click="to_child()">To child</button>
+            <div ng-controller="con11"></div>
+        </div>
+        <div ng-controller="con2"></div>
+    </div>
+    <script type="text/javascript">
+        var template = angular.module('myApp', []);
+        template.controller('con1', function ($scope) {
+            $scope.to_parent = function () {
+                $scope.$emit('event_1', 'event comes from the child');
+            }
+            $scope.to_child = function ($scope) {
+                $scope.$broadcast('event_2', 'Event comes from the parent');
+            }
+        });
+        template.controller('con', function ($scope) {
+            $scope.$on('event_1', function (event, data) {
+                console.log("Listen from the parent", data);
+            });
+            $scope.$on('event_2', function (event, data) {
+                console.log("Listen from the parent", data);
+            });
+        });
+        template.controller('con11', function ($scope) {
+            $scope.$on('event_1', function (event, data) {
+                console.log("Listen from the child", data);
+            });
+            $scope.$on('event_2', function (event, data) {
+                console.log("Listen from the child", data);
+            });
+        });
+        template.controller('con2', function ($scope) {
+            $scope.$on('event_1', function (event, data) {
+                console.log("Listen from the partner", data);
+            });
+            $scope.$on('event_2', function (event, data) {
+                console.log("Listen from the partner", data);
+            });
+        });
+    </script>
+</body>
